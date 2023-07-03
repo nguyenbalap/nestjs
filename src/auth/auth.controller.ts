@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Get, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 export type SignInType = {
     email: string,
@@ -13,5 +14,11 @@ export class AuthController {
     @Post('/login')
     signIn(@Body() body: SignInType) {
         return this.authService.signIn(body.email, body.password);
+    }
+
+    @UseGuards(AuthGuard)
+    @Get('profile')
+    getProfile(@Request() req) {
+        return req.user;
     }
 }
