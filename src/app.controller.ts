@@ -1,16 +1,9 @@
 import { Controller, Get, Res, Req, Query, HttpCode, Header, Redirect, Param } from '@nestjs/common';
-import { AppService } from './app.service';
 import { Request, Response } from 'express';
 
 @Controller('api')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
+  
   @Get('/health-check')
   getApi(@Res() res: Response) {
     res.status(200).send('ok')
