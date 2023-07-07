@@ -13,11 +13,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UserInterFace } from './interfaces/user.interface';
 import { User } from './user.entity';
 import { RolesGuard } from 'src/guards/roles.guard';
+import { ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { CreateUserDto } from './dto/user.dto';
 
 @Controller('users')
+@ApiBearerAuth('access-token')
 export class UserController {
   constructor(private usersService: UsersService) {}
 
@@ -27,9 +29,10 @@ export class UserController {
     return this.usersService.getAll();
   }
 
-  @Post()
-  @HttpCode(204)
-  create(@Body() user: UserInterFace): Promise<User> {
+  @Post('/create')
+  @HttpCode(200)
+  @ApiBody({ type: CreateUserDto })
+  create(@Body() user: CreateUserDto): Promise<User> {
     return this.usersService.create(user);
   }
 

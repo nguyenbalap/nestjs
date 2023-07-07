@@ -1,6 +1,8 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 import { User } from './users/user.entity';
+import { Post } from './posts/post.entity';
+import { Comment } from './comments/comment.entity';
 
 const type = (process.env.TYPEORM_CONNECTION as any) || 'mysql';
 
@@ -11,7 +13,7 @@ export const databases: TypeOrmModuleOptions = {
   username: process.env.DB_USER || 'root',
   password: process.env.PASSWORD || 'rootpassword',
   database: process.env.DB || 'blogs',
-  entities: [User],
+  entities: [User, Post, Comment],
   synchronize: true,
   // autoLoadEntities: true
 };

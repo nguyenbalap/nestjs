@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { UserRole } from "./interfaces/user.interface";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany} from 'typeorm';
+import { UserRole } from "./type/user.type";
+import { Post } from 'src/posts/post.entity';
+import { Comment } from 'src/comments/comment.entity';
 
 @Entity('users')
 export class User {
@@ -18,7 +20,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column({ default: null })
@@ -30,6 +32,12 @@ export class User {
     default: UserRole.USER,
   })
   role: UserRole
+
+  @OneToMany(() => Post, (posts) => posts.user) // note: we will create author property in the Photo class below
+  posts: Post[]
+
+  @OneToMany(() => Comment, (comments) => comments.user)
+  comments: Comment[]
 
   @CreateDateColumn()
   created_at: Date

@@ -6,6 +6,9 @@ import { databases } from './config';
 import { UserModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
+import { PostsController } from './posts/posts.controller';
+import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -18,7 +21,9 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     UserModule,
     AuthModule,
+    PostsModule,
+    CommentsModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, PostsController],
 })
 export class AppModule {}
