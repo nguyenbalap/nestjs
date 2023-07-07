@@ -1,8 +1,9 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-import { ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBody, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateCommentDto, UpdateCommentDto } from './dto/comments.dto';
 
+@ApiTags('comments')
 @Controller('comments')
 @ApiBearerAuth('access-token')
 export class CommentsController {

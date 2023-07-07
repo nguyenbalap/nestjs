@@ -9,9 +9,10 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBody, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreatePostDto, UpdatePutDto } from './dto/posts.dto';
 
+@ApiTags('posts')
 @Controller('posts')
 @ApiBearerAuth('access-token')
 export class PostsController {

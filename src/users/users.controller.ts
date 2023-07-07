@@ -15,9 +15,10 @@ import {
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { RolesGuard } from 'src/guards/roles.guard';
-import { ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBody, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/user.dto';
 
+@ApiTags('users')
 @Controller('users')
 @ApiBearerAuth('access-token')
 export class UserController {
