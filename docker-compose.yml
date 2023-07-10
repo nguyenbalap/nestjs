@@ -1,0 +1,24 @@
+version: "3.4"
+
+services:
+  webapp:
+    image: "blogs-web-be:20230710"
+    restart: unless-stopped
+    environment:
+    - MYSQL_DATABASE=blogs
+    - MYSQL_USERNAME=lapnb
+    - MYSQL_PASSWORD=lXqE9#yOk
+    volumes:
+      - "./.env:/app/.env"
+    ports:
+      - "3080:3080"
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+    - MYSQL_ROOT_PASSWORD=rootpassword
+    volumes:
+      - "./data:/var/lib/mysql"
+    ports:
+      - "3609:3306"
+
