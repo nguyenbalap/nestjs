@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, DeleteDateColumn} from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  DeleteDateColumn,
+} from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { Post } from 'src/posts/post.entity';
 
@@ -11,17 +19,20 @@ export class Comment {
   content: string;
 
   @ManyToOne(() => User, (user) => user.comments)
-  user: User
+  user: User;
 
   @ManyToOne(() => Post, (post) => post.comments)
-  post: Post
+  post: Post;
+
+  @Column({ default: null })
+  reply_to_comment: number;
 
   @CreateDateColumn()
-  created_at: Date
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Date
+  updated_at: Date;
 
   @DeleteDateColumn()
-  deleted_at: Date
+  deleted_at: Date;
 }

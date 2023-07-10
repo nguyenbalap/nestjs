@@ -4,7 +4,7 @@ import { UserRole } from '../type/user.type';
 export class CreateUserDto {
   @ApiProperty()
   firstName: string;
-  
+
   @ApiProperty()
   lastName: string;
 
@@ -16,6 +16,9 @@ export class CreateUserDto {
 
   @ApiProperty()
   avatar: string;
+
+  @ApiProperty()
+  username: string;
 
   @ApiProperty()
   password: string;

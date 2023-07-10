@@ -18,6 +18,6 @@ export const databases: TypeOrmModuleOptions = {
   // autoLoadEntities: true
 };
 
-export const port = () => parseInt(process.env.PORT, 10)
+export const port = () => parseInt(process.env.PORT, 10);
 
 // console.log([join(__dirname, './**/*.entity{.ts,.js}')])

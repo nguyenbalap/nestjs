@@ -23,6 +23,7 @@ export class UsersService {
     user.email = data.email;
     user.role = data.role;
     user.avatar = data.avatar;
+    user.username = data.username;
     user.password = await bcrypt.hash(data.password, 10);
     return this.usersRepository.save(user);
   }
@@ -43,6 +44,7 @@ export class UsersService {
         'password',
         'isActive',
         'role',
+        'username',
         'created_at',
         'updated_at',
       ],

@@ -11,12 +11,14 @@ export class PostsService {
   ) {}
 
   getAll(): Promise<Post[]> {
-    return this.postsRepository.find({
-      relations: {
-        user: true,
-        comments: true,
-      },
-    });
+    return (
+      this.postsRepository
+        .createQueryBuilder('post')
+        .leftJoinAndSelect('post.user', 'user')
+        // .leftJoinAndSelect("post.comments", "comment")
+        .loadRelationCountAndMap('post.comments_count', 'post.comments')
+        .getMany()
+    );
   }
 
   getById(id: number) {
@@ -26,7 +28,6 @@ export class PostsService {
       },
       relations: {
         user: true,
-        comments: true,
       },
     });
   }

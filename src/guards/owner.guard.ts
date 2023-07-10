@@ -7,13 +7,18 @@ import {
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class RolesGuard implements CanActivate {
+export class OwnerGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const res = context.switchToHttp().getResponse();
-    console.log(res.user);
-    if (res.user.role !== 1) {
+    const req = context.switchToHttp().getRequest();
+
+    if (res.user.role === 1) {
+      return true;
+    }
+
+    if (res.user.id !== parseInt(req.params.userId, 10)) {
       throw new UnauthorizedException();
     }
     return true;

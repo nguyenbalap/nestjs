@@ -1,12 +1,21 @@
-import { Controller, Get, Res, Req, Query, HttpCode, Header, Redirect, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Res,
+  Req,
+  Query,
+  HttpCode,
+  Header,
+  Redirect,
+  Param,
+} from '@nestjs/common';
 import { Request, Response } from 'express';
 
 @Controller('api')
 export class AppController {
-  
   @Get('/health-check')
   getApi(@Res() res: Response) {
-    res.status(200).send('ok')
+    res.status(200).send('ok');
   }
 
   // @Get('/test')

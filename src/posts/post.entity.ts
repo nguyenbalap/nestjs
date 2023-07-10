@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne} from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { Comment } from 'src/comments/comment.entity';
 
@@ -14,14 +22,14 @@ export class Post {
   content: string;
 
   @ManyToOne(() => User, (user) => user.posts)
-  user: User
+  user: User;
 
   @OneToMany(() => Comment, (comments) => comments.post)
-  comments: Comment[]
+  comments: Comment[];
 
   @CreateDateColumn()
-  created_at: Date
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Date
+  updated_at: Date;
 }

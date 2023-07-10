@@ -9,12 +9,10 @@ import { AuthMiddleware } from 'src/middlewares/auth.middleware';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
   providers: [UsersService],
-  exports: [UsersService]
+  exports: [UsersService],
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes("users", "posts", "comments");
+    consumer.apply(AuthMiddleware).forRoutes('users', 'posts', 'comments');
   }
 }

@@ -31,6 +31,7 @@ export class UserController {
   }
 
   @Post('/create')
+  @UseGuards(RolesGuard)
   @HttpCode(200)
   @ApiBody({ type: CreateUserDto })
   create(@Body() user: CreateUserDto): Promise<User> {

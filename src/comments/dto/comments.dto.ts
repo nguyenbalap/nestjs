@@ -1,18 +1,20 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateCommentDto {
-    @ApiProperty({ type: 'text' })
-    content: string;
+  @ApiProperty({ type: 'text' })
+  content: string;
 
-    @ApiProperty()
-    postId: number;
+  @ApiProperty()
+  reply_to_comment: number;
 
-    @ApiProperty()
-    userId: number;
+  @ApiProperty()
+  postId: number;
 
+  @ApiProperty()
+  userId: number;
 }
 
 export class UpdateCommentDto {
-    @ApiProperty({ type: 'text' })
-    content: string;
+  @ApiProperty({ type: 'text' })
+  content: string;
 }
