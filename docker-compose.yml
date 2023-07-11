@@ -2,20 +2,21 @@ version: "3.4"
 
 services:
   webapp:
-    image: "blogs-web-be:20230710"
+    image: "blogs/ui-be:20230711-7c49f0ac"
     restart: unless-stopped
     environment:
-    - MYSQL_DATABASE=blogs
-    - MYSQL_USERNAME=lapnb
-    - MYSQL_PASSWORD=lXqE9#yOk
+    - MYSQL_HOST=mysql
     volumes:
       - "./.env:/app/.env"
+    depends_on:
+      - mysql
     ports:
       - "3080:3080"
   mysql:
-    image: mysql
+    image: mysql:5.7
     restart: always
     environment:
+    - MYSQL_DATABASE=blogs
     - MYSQL_ROOT_PASSWORD=rootpassword
     volumes:
       - "./data:/var/lib/mysql"
