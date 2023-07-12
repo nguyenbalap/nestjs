@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-@Controller('api')
+@Controller('')
 export class AppController {
   @Get('/health-check')
   getApi(@Res() res: Response) {
